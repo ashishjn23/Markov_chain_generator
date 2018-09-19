@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 #include <map>
+using namespace std;
+
 class markov {
 public:
     void create( std::string file, int keyLen, int words ) {
@@ -61,14 +63,29 @@ private:
             }
             key = key.substr( key.find_first_of( 32 ) + 1 ) + " " + w1;
         }
+        print_map(dictionary);
+        
         return;
     }
+    
+        void print_map(map<std::string, vector<string>> dict){
+        map<string, vector<string> >::iterator it;
+        vector<string>::iterator itr;
+        for (it = dict.begin(); it!= dict.end(); it++){
+            cout << "Key: " << it->first << " ";
+            for (itr = (it->second).begin(); itr != (it->second).end() ; itr++){
+                cout << *itr << "*";
+            }
+            cout << endl;
+        }
+    }
+    
     std::string fileBuffer;
     std::map<std::string, std::vector<std::string> > dictionary;
 };
 int main( int argc, char* argv[] ) {
     srand( unsigned( time( 0 ) ) );
     markov m;
-    m.create( std::string( "alice_oz.txt" ), 3, 200 );
+    m.create( std::string( "input.txt" ), 3, 200 );
     return 0;
 }
