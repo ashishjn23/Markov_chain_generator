@@ -49,7 +49,7 @@ private:
         }
             //cout << output << endl;
             cout << output << endl;
-            cout << output.length() << endl;
+            //cout << output.length() << endl;
     }
     
     void create_dict(){
